@@ -39,13 +39,13 @@ jobs:
     - name: Build & Push Backend Docker image
       uses: docker/build-push-action@v5
       with:
-        context: ./backend
+        context: ./spring-boot-server
         push: true
         tags: ${{ secrets.DOCKERHUB_USER }}/backend:latest
 
     - name: Build & Push Frontend Docker image
       uses: docker/build-push-action@v5
       with:
-        context: ./frontend
+        context: ./angular-15-client
         push: true
         tags: ${{ secrets.DOCKERHUB_USER }}/frontend:latest
