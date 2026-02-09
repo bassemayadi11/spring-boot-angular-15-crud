@@ -1,0 +1,32 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./spring-boot-server
+    container_name: spring-backend
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      
+  frontend:
+    build: ./angular-15-client
+    container_name: angular-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
