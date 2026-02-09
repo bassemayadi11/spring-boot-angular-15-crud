@@ -21,11 +21,11 @@ jobs:
         java-version: '17'
 
     - name: Build Backend
-      working-directory: ./backend
+      working-directory: ./spring-boot-server
       run: mvn clean package -DskipTests
 
     - name: Build Frontend
-      working-directory: ./frontend
+      working-directory: ./angular-15-client
       run: |
         npm install
         npm run build
